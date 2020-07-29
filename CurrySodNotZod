@@ -50,6 +50,9 @@ public class CurrySodNotZod
 		int memberCount = 0;
 		int seniorCount = 0;
 		int noDiscountCount = 0;
+		int premiumCount = 0;
+		int specialCount = 0;
+		int basicCount = 0;
 		 
 		//displays the welcome banner
 		displayWelcomeBanner();
@@ -97,16 +100,19 @@ public class CurrySodNotZod
 				{
 					itemName = NAME_PREMIUM;
 					itemPrice = PRICE_PREMIUM;
+					premiumCount++;
 				}
 				else if(itemSelection == 'B')
 				{
 					itemName = NAME_SPECIAL;
 					itemPrice = PRICE_SPECIAL;
+					specialCount++;
 				}
 				else
 				{
 					itemName = NAME_BASIC;
 					itemPrice = PRICE_BASIC;
+					basicCount++;
 				}
 				//end selection structure
 			
@@ -135,7 +141,8 @@ public class CurrySodNotZod
 		//displays final report only if the grand total is greater then zero
 		if(grandTotal > 0.0)
 		{
-			displayFinalReport(memberCount, seniorCount, noDiscountCount, grandTotal);
+			displayFinalReport(userName, memberCount, seniorCount, noDiscountCount, premiumCount, 
+					specialCount, basicCount, grandTotal);
 		}
 		
 		//displays farewell message
@@ -196,8 +203,9 @@ public class CurrySodNotZod
 	}//end method
 	
 	//method to display the final report
-	public static void displayFinalReport(int borrowedMemberCount, int borrowedSeniorCount,
-			int borrowedNoDiscountCount, double borrowedGrandTotal)
+	public static void displayFinalReport(String borrowedUserName, int borrowedMemberCount, int borrowedSeniorCount,
+			int borrowedNoDiscountCount, int borrowedPremiumCount, int borrowedSpecialCount,
+			int borrowedBasicCount, double borrowedGrandTotal)
 	{
 		System.out.println();
 		System.out.println("Final Report");
@@ -205,6 +213,9 @@ public class CurrySodNotZod
 		System.out.printf("%-20s%9d\n","Member Discount:", borrowedMemberCount);
 		System.out.printf("%-20s%9d\n","Senior Discount:", borrowedSeniorCount);
 		System.out.printf("%-20s%9d\n","No Discount:", borrowedNoDiscountCount);
+		System.out.printf("%-20s%9d\n","Premium Count:", borrowedPremiumCount);
+		System.out.printf("%-20s%9d\n","Special Count:", borrowedSpecialCount);
+		System.out.printf("%-20s%9d\n","Basic Count:", borrowedBasicCount);
 		System.out.printf("%-20s%1s%8.2f\n","Grand Total:", "$", borrowedGrandTotal);
 		System.out.println("----- ----- ----- ----- ----- ----- ----- ----- ----- -----");
 	}//end method
